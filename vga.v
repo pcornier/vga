@@ -24,10 +24,9 @@ reg [9:0] h_count;
 reg [9:0] v_count;
 
 // 25M clock
-reg CLK_25M;
-initial CLK_25M = 1'b0;
+reg clk_en;
 always @(posedge CLK_50M)
-  CLK_25M <= ~CLK_25M;
+  clk_en <= ~clk_en;
 
 parameter
   HFP = 640,
@@ -45,7 +44,7 @@ assign xpos = h_count < HFP ? h_count : 10'b0;
 assign ypos = v_count < VFP ? v_count : 10'b0;
 
 always @(posedge CLK_50M) begin
-  if (CLK_25M) begin
+  if (clk_en) begin
     if (h_count == HPX) begin
       h_count <= 0;
       v_count <= v_count + 1;
