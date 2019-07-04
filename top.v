@@ -20,7 +20,7 @@ assign green = xpos > 65 && xpos < 105 && ypos > 65 && ypos < 105 ? 6'b111111 : 
 assign blue = xpos > 80 && xpos < 120 && ypos > 80 && ypos < 120 ? 5'b11111 : 5'b0;
 
 vga display(
-  .clk(clk),
+  .CLK_50M(clk),
   .h_sync(h_sync),
   .v_sync(v_sync),
   .xpos(xpos),
